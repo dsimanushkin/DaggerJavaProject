@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.devlab74.daggerjavaproject.BaseActivity;
 import com.devlab74.daggerjavaproject.R;
-import com.devlab74.daggerjavaproject.ui.main.profile.ProfileFragment;
+import com.devlab74.daggerjavaproject.ui.main.posts.PostsFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void testFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ProfileFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new PostsFragment()).commit();
     }
 
     @Override

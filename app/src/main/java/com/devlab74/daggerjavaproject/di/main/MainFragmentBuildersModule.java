@@ -1,5 +1,6 @@
 package com.devlab74.daggerjavaproject.di.main;
 
+import com.devlab74.daggerjavaproject.ui.main.posts.PostsFragment;
 import com.devlab74.daggerjavaproject.ui.main.profile.ProfileFragment;
 
 import dagger.Module;
@@ -10,5 +11,8 @@ public abstract class MainFragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract ProfileFragment contributeProfileFragment();
+
+    @ContributesAndroidInjector
+    abstract PostsFragment contributePostsFragment();
 
 }
