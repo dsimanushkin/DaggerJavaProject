@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DaggerJavaProject</string>
+    <string name="user_id">User id</string>
+    <string name="login">Login</string>
+    <string name="auth_screen_logo">Auth Screen Logo</string>
+    <string name="description">Enter user id from 1 to 10.</string>
 </resources>
