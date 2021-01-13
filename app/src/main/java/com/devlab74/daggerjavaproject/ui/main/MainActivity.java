@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
@@ -55,6 +56,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (item.getItemId() == R.id.action_logout) {
             sessionManager.logOut();
             return true;
+        } else if (item.getItemId() == R.id.home) {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return super.onOptionsItemSelected(item);
         }
@@ -64,11 +72,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_profile: {
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.profileScreen);
+
+                NavOptions navOptions = new NavOptions
+                        .Builder()
+                        .setPopUpTo(R.id.main, true)
+                        .build();
+
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.profileScreen, null, navOptions);
                 break;
             }
             case R.id.nav_posts: {
-                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.postsScreen);
+
+                if (isValidDestination(R.id.postsScreen)) {
+                    Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.postsScreen);
+                }
+
                 break;
             }
         }
@@ -78,5 +96,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return true;
     }
 
+    private boolean isValidDestination(int destination) {
+        return destination != Navigation.findNavController(this, R.id.nav_host_fragment).getCurrentDestination().getId();
+    }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        return NavigationUI.navigateUp(Navigation.findNavController(this, R.id.nav_host_fragment), drawerLayout);
+    }
 }
