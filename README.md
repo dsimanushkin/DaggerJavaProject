@@ -8,7 +8,7 @@
 			<li>DaggerAppCompatActivity</li>
 			<li>DaggerFragment</li>
 		</ol>
-	<li>@Provides, @Binds, @BindsInstance explanation</li>
+	<li>@Provides, @Binds, @BindsInstance</li>
 	<li>Map Multibinding</li>
 	<li>Subcomponents</li>
 	<li>Scopes</li>
